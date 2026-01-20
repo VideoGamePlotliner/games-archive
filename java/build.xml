@@ -1,0 +1,26 @@
+<!-- This file was created on 29 Dec 2025. -->
+
+<!-- Help from https://ant.apache.org/manual/index.html -->
+
+<project default="build">
+    <property name="build_src_dir" value="src"/>
+    <property name="build_dest_dir" value="build"/>
+    <property name="main_class_TicTacToe" value="TicTacToe_Main"/>
+
+    <target name="build">
+        <echo message="BUILDING..."/>
+        <mkdir dir="${build_dest_dir}"/>
+        <javac srcdir="${build_src_dir}" destdir="${build_dest_dir}" includeantruntime="false" debug="true"/>
+        <echo message="Done building."/>
+    </target>
+    <target name="run">
+        <echo message="RUNNING..."/>
+        <java classname="${main_class_TicTacToe}" dir="${build_dest_dir}" fork="true"/>
+        <echo message="Done running."/>
+    </target>
+    <target name="clean">
+        <echo message="CLEANING..."/>
+        <delete dir="${build_dest_dir}"/>
+        <echo message="Done cleaning."/>
+    </target>
+</project>
