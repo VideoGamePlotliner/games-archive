@@ -1,0 +1,8 @@
+# This file was created on 7 Dec 2025.
+
+*.o
+*.d
+/c/tictactoe_main
+/cpp/tictactoe_main
+/java/build/
+/python/__pycache__/
