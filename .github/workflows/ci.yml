@@ -4,8 +4,9 @@
 # - https://github.com/actions/starter-workflows/blob/afb9bf31201eb5febe3b6e76b73fb1fe0b987634/ci/c-cpp.yml
 # - https://github.com/actions/starter-workflows/blob/afb9bf31201eb5febe3b6e76b73fb1fe0b987634/ci/ant.yml
 # - https://github.com/actions/starter-workflows/blob/afb9bf31201eb5febe3b6e76b73fb1fe0b987634/ci/python-package.yml
+# - https://github.com/actions/starter-workflows/blob/afb9bf31201eb5febe3b6e76b73fb1fe0b987634/ci/go.yml
 
-name: C/C++/Java/Python CI
+name: C/C++/Java/Python/Go CI
 
 on: push
 
@@ -102,3 +103,67 @@ jobs:
         # pytest
         python3 TicTacToe_Main.py < ../tictactoe_main___test_input_1.txt
         python3 TicTacToe_Main.py < ../tictactoe_main___test_input_2.txt
+
+  build-go:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go/${{ matrix.working-directory-for-building-go }}
+    strategy:
+      fail-fast: false
+      matrix:
+        working-directory-for-building-go: ["abc", "scan_funcs", "tictactoe"]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22.2'
+    - name: Build
+      run: go build -v ./...
+    - name: Clean
+      run: go clean -v ./...
+
+  test-go:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go/${{ matrix.working-directory-for-testing-go }}
+    strategy:
+      fail-fast: false
+      matrix:
+        working-directory-for-testing-go: ["scan_funcs"]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22.2'
+    - name: Test
+      run: go test -v ./...
+
+  run-go:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go/${{ matrix.working-directory-for-running-go }}
+    strategy:
+      fail-fast: false
+      matrix:
+        working-directory-for-running-go: ["abc", "tictactoe"]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22.2'
+    - name: Run test 1
+      run: go run -v ./... < ../../tictactoe_main___test_input_1.txt
+    - name: Run test 2
+      run: go run -v ./... < ../../tictactoe_main___test_input_2.txt

@@ -314,3 +314,33 @@ Note: this section was added to this file on 16 Dec 2025.
     from InputFunctions import get_int_from_to
     from TicTacToe import TicTacToe
     ```
+
+# From 1 Feb 2026 to 2 Feb 2026
+- Create [`TicTacToe_GUI.java`](java/src/TicTacToe_GUI.java).
+- Add the following line to [`build.xml`](java/build.xml):
+  ```xml
+  <property name="gui_class_TicTacToe" value="TicTacToe_GUI"/>
+  ```
+- Add the following lines to [`build.xml`](java/build.xml):
+  ```xml
+  <target name="gui">
+      <echo message="GUI..."/>
+      <java classname="${gui_class_TicTacToe}" dir="${build_dest_dir}" fork="true"/>
+      <echo message="Done with GUI."/>
+  </target>
+  ```
+
+# From 4 Feb 2026 to 10 Feb 2026
+- Add the lines `/go/abc/abc` and `/go/tictactoe/tictactoe` to [`.gitignore`](.gitignore).
+- Add new jobs `build-go`, `test-go`, and `run-go` to [`ci.yml`](.github/workflows/ci.yml).
+- Change the value of `name` in [`ci.yml`](.github/workflows/ci.yml) from `C/C++/Java/Python CI` to `C/C++/Java/Python/Go CI`.
+- Add another URL to the comments at the top of [`ci.yml`](.github/workflows/ci.yml).
+- Create the following files:
+  - [`go/abc/abc.go`](go/abc/abc.go)
+  - [`go/abc/go.mod`](go/abc/go.mod)
+  - [`go/scan_funcs/go.mod`](go/scan_funcs/go.mod)
+  - [`go/scan_funcs/scan_funcs_test.go`](go/scan_funcs/scan_funcs_test.go)
+  - [`go/scan_funcs/scan_funcs.go`](go/scan_funcs/scan_funcs.go)
+  - [`go/tictactoe/go.mod`](go/tictactoe/go.mod)
+  - [`go/tictactoe/tictactoe_main.go`](go/tictactoe/tictactoe_main.go)
+  - [`go/tictactoe/tictactoe.go`](go/tictactoe/tictactoe.go)

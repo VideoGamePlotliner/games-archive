@@ -6,6 +6,7 @@
     <property name="build_src_dir" value="src"/>
     <property name="build_dest_dir" value="build"/>
     <property name="main_class_TicTacToe" value="TicTacToe_Main"/>
+    <property name="gui_class_TicTacToe" value="TicTacToe_GUI"/>
 
     <target name="build">
         <echo message="BUILDING..."/>
@@ -17,6 +18,11 @@
         <echo message="RUNNING..."/>
         <java classname="${main_class_TicTacToe}" dir="${build_dest_dir}" fork="true"/>
         <echo message="Done running."/>
+    </target>
+    <target name="gui">
+        <echo message="GUI..."/>
+        <java classname="${gui_class_TicTacToe}" dir="${build_dest_dir}" fork="true"/>
+        <echo message="Done with GUI."/>
     </target>
     <target name="clean">
         <echo message="CLEANING..."/>
