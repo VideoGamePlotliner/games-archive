@@ -8,3 +8,5 @@
 /python/__pycache__/
 /go/abc/abc
 /go/tictactoe/tictactoe
+/rust/Cargo.lock
+/rust/target/

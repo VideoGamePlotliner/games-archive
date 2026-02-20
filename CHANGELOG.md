@@ -344,3 +344,19 @@ Note: this section was added to this file on 16 Dec 2025.
   - [`go/tictactoe/go.mod`](go/tictactoe/go.mod)
   - [`go/tictactoe/tictactoe_main.go`](go/tictactoe/tictactoe_main.go)
   - [`go/tictactoe/tictactoe.go`](go/tictactoe/tictactoe.go)
+
+# From 17 Feb 2026 to 20 Feb 2026
+- Add the lines `/rust/Cargo.lock` and `/rust/target/` to [`.gitignore`](.gitignore).
+- Add new job `build-rust` to [`ci.yml`](.github/workflows/ci.yml).
+- Change the value of `name` in [`ci.yml`](.github/workflows/ci.yml) from `C/C++/Java/Python/Go CI` to `C/C++/Java/Python/Go/Rust CI`.
+- Add another URL to the comments at the top of [`ci.yml`](.github/workflows/ci.yml).
+- Create the following files:
+  - [`rust/Cargo.toml`](rust/Cargo.toml)
+  - [`rust/abc/Cargo.toml`](rust/abc/Cargo.toml)
+  - [`rust/abc/src/main.rs`](rust/abc/src/main.rs)
+  - [`rust/scanfuncs/Cargo.toml`](rust/scanfuncs/Cargo.toml)
+  - [`rust/scanfuncs/src/lib.rs`](rust/scanfuncs/src/lib.rs)
+  - [`rust/tictactoe/Cargo.toml`](rust/tictactoe/Cargo.toml)
+  - [`rust/tictactoe/src/lib.rs`](rust/tictactoe/src/lib.rs)
+  - [`rust/tictactoe_main/Cargo.toml`](rust/tictactoe_main/Cargo.toml)
+  - [`rust/tictactoe_main/src/main.rs`](rust/tictactoe_main/src/main.rs)

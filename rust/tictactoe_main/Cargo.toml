@@ -1,0 +1,10 @@
+# This file was created on 18 Feb 2026.
+
+[package]
+name = "tictactoe_main"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+scanfuncs = { version = "0.1.0", path = "../scanfuncs" }
+tictactoe = { version = "0.1.0", path = "../tictactoe" }
