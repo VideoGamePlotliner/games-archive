@@ -5,8 +5,9 @@
 # - https://github.com/actions/starter-workflows/blob/afb9bf31201eb5febe3b6e76b73fb1fe0b987634/ci/ant.yml
 # - https://github.com/actions/starter-workflows/blob/afb9bf31201eb5febe3b6e76b73fb1fe0b987634/ci/python-package.yml
 # - https://github.com/actions/starter-workflows/blob/afb9bf31201eb5febe3b6e76b73fb1fe0b987634/ci/go.yml
+# - https://github.com/actions/starter-workflows/blob/afb9bf31201eb5febe3b6e76b73fb1fe0b987634/ci/rust.yml
 
-name: C/C++/Java/Python/Go CI
+name: C/C++/Java/Python/Go/Rust CI
 
 on: push
 
@@ -167,3 +168,25 @@ jobs:
       run: go run -v ./... < ../../tictactoe_main___test_input_1.txt
     - name: Run test 2
       run: go run -v ./... < ../../tictactoe_main___test_input_2.txt
+
+  build-rust:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: rust
+    strategy:
+      fail-fast: false
+      matrix:
+        what-to-do-right-before-cleaning-rust: ["build", "check", "doc", "test", "run --bin abc",
+          "run --bin tictactoe_main < ../tictactoe_main___test_input_1.txt",
+          "run --bin tictactoe_main < ../tictactoe_main___test_input_2.txt"]
+    env:
+      CARGO_TERM_COLOR: always
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: ${{ matrix.what-to-do-right-before-cleaning-rust }}
+      run: cargo ${{ matrix.what-to-do-right-before-cleaning-rust }} --verbose
+    - name: Clean
+      run: cargo clean --verbose
